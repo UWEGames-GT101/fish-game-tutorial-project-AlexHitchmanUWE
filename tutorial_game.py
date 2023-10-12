@@ -68,11 +68,21 @@ class MyASGEGame(pyasge.ASGEGame):
         pass
 
     def initMenu(self) -> bool:
-        self.data.fonts["MainFont"] = self.data.renderer.loadFont("/data/fonts/Heartless.ttf", 300)
+        self.data.fonts["MainFont"] = self.data.renderer.loadFont("/data/fonts/Heartless.ttf", 200)
         self.menu_text = pyasge.Text(self.data.fonts["MainFont"])
         self.menu_text.string = "The Fish Game"
-        self.menu_text.position = [100, 350]
+        self.menu_text.position = [350, 200]
         self.menu_text.colour = pyasge.COLOURS.DARKOLIVEGREEN
+
+        self.play_option = pyasge.Text(self.data.fonts["MainFont"])
+        self.play_option.string = "START"
+        self.play_option.position = [650, 400]
+        self.play_option.colour = pyasge.COLOURS.DARKOLIVEGREEN
+
+        self.exit_option = pyasge.Text(self.data.fonts["MainFont"])
+        self.exit_option.string = "EXIT"
+        self.exit_option.position = [700, 600]
+        self.exit_option.colour = pyasge.COLOURS.LIGHTSLATEGRAY
 
         return True
 
@@ -80,6 +90,7 @@ class MyASGEGame(pyasge.ASGEGame):
         pass
 
     def keyHandler(self, event: pyasge.KeyEvent) -> None:
+
         pass
 
     def spawn(self) -> None:
@@ -95,17 +106,14 @@ class MyASGEGame(pyasge.ASGEGame):
             pass
 
     def render(self, game_time: pyasge.GameTime) -> None:
-        """
-        This is the variable time-step function. Use to update
-        animations and to render the gam    e-world. The use of
-        ``frame_time`` is essential to ensure consistent performance.
-        @param game_time: The tick and frame deltas.
-        """
+        self.data.renderer.render(self.data.background)
+
 
         if self.menu:
             # render the menu here
-            self.data.renderer.render(self.data.background)
             self.data.renderer.render(self.menu_text)
+            self.data.renderer.render(self.play_option)
+            self.data.renderer.render(self  .exit_option)
         else:
             # render the game here
             pass
